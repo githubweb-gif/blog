@@ -47,6 +47,18 @@ const router = new VueRouter({
   routes,
   scrollBehavior(to, from, savedPosition) {
     return new Promise((resolve, reject) => {
+      if (to.hash) {
+        const position = {}
+        position.selector = to.hash
+        const hash = document.querySelector(to.hash)
+        if (hash) {
+          const top = hash.getBoundingClientRect().top
+          position.y = top - 80
+          position.x = 0
+          resolve(position)
+        }
+        resolve()
+      }
       if (savedPosition) {
         resolve(savedPosition)
       } else {

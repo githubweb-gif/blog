@@ -81,12 +81,19 @@ export default {
   justify-content: space-between;
 }
 header {
+  width: 100%;
   height: 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-bottom: 1px solid #ecebf0;
+  background-color: #ffffff;
+  z-index: 3000;
 }
 main {
   flex: 1;
   width: 100%;
-  margin-top: 75px;
+  margin-top: 4rem;
   .mainBody {
     max-width: 1140px;
     margin: 0 auto;

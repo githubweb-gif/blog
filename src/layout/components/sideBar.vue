@@ -22,7 +22,12 @@
       </ul>
     </div>
     <!-- 目录 -->
-    <div v-if="title === null || title === '' ? false : true" class="contents" v-html="title" />
+    <div
+      v-if="title === null || title === '' ? false : true"
+      ref="contents"
+      class="contents"
+      v-html="title"
+    />
   </div>
 </template>
 
@@ -41,9 +46,6 @@ export default {
   },
   watch: {
     title() {
-      if (this.hot.length === 0 || this.sort.length === 0) {
-        return
-      }
       this.titlePosition()
     },
     hot() {
@@ -84,6 +86,9 @@ export default {
     },
     // 监听title及定位
     titlePosition() {
+      if (this.hot.length === 0 || this.sort.length === 0) {
+        return
+      }
       if (this.title !== null && this.title !== '') {
         this.$nextTick(() => {
           const contents = document.querySelector('.contents')
@@ -124,6 +129,16 @@ export default {
         }
       })
     }
+    // 处理title优化锚点定位
+    // sideTitle() {
+    //   if (this.title !== null && this.title !== '') {
+    //     this.$nextTick(() => {
+    //       const contens = document.querySelector('.contnets')
+    //       // const a = contens.children
+    //       console.log(contens)
+    //     })
+    //   }
+    // }
   }
 }
 </script>

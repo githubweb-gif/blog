@@ -147,13 +147,7 @@ export default {
 <style lang="scss" scoped>
 #header {
   width: 100%;
-  height: 60px;
-  border-bottom: 1px solid #ecebf0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: #ffffff;
-  z-index: 3000;
+  height: 100%;
   nav {
     height: 100%;
     max-width: 1140px;
