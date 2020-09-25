@@ -82,6 +82,11 @@ export default {
       }
     }
   },
+  watch: {
+    $route() {
+      this.ch.height = '60px'
+    }
+  },
   created() {
     this.getWebInfo()
   },

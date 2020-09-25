@@ -2,9 +2,10 @@ import axios from 'axios'
 
 let baseURL = ''
 if (process.env.NODE_ENV === 'production') {
+  // 你上线的后端url
   baseURL = 'http://106.53.102.65:3000/blog/'
 } else {
-  baseURL = 'http://localhost:3000/blog/'
+  baseURL = 'http://106.53.102.65:3000/blog/'
 }
 console.log(baseURL)
 const service = axios.create({
