@@ -59,6 +59,7 @@ export default {
         pre.forEach((item, index) => {
           var span = document.createElement('span')
           span.innerText = '复制'
+          span.style.display = 'none'
           item.onmouseover = function() {
             span.style.display = 'block'
           }
