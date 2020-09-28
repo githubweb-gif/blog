@@ -27,6 +27,17 @@
       class="content contentArticle"
       v-html="article.content"
     />
+    <!-- 上下文 -->
+    <div class="context">
+      <div v-if="next" class="next" @click="context(next._id)">
+        <span>上</span>
+        <p>{{ next.title }}</p>
+      </div>
+      <div v-if="previous" class="previous" @click="context(previous._id)">
+        <span>下</span>
+        <p>{{ previous.title }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -89,7 +100,10 @@ export default {
     return {
       article: null,
       num: '',
-      mulv: ''
+      mulv: '',
+      // 上下文,
+      next: {},
+      previous: {}
     }
   },
   computed: {
@@ -120,6 +134,8 @@ export default {
         getArticle(this.id).then((res) => {
           this.article = res.data.article
           this.num = res.data.article.meta.views
+          this.next = res.data.next[0]
+          this.previous = res.data.previous[0]
           this.articleTitle()
           this.$emit('loading', false)
         })
@@ -151,17 +167,9 @@ export default {
         }
       })
     },
-    // 滚动到顶部
-    scrollTop() {
-      this.$nextTick(() => {
-        const title = this.$refs.title
-        if (title.children) {
-          window.scroll(0, 0)
-        }
-      })
-      // setTimeout(() => {
-      //   window.scroll(0, 0)
-      // }, 400)
+    // 上下文跳转
+    context(id) {
+      this.$router.push(`/article/${id}`)
     }
   }
 }
@@ -188,7 +196,7 @@ h2 {
     margin-bottom: 15px;
     text-align: center;
   }
-  p {
+  .contentArticle {
     font-size: 14px !important;
     margin-bottom: 10px;
     line-height: 2;
@@ -208,6 +216,32 @@ h2 {
       margin-right: 10px;
       i {
         margin: 0 5px;
+      }
+    }
+  }
+  .context {
+    display: flex;
+    justify-content: space-between;
+    .next,
+    .previous {
+      cursor: pointer;
+      max-width: 40%;
+      padding: 10px 0 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      span{
+        color: #e91e63;
+        font-weight: bold;
+        padding: 0 10px;
+      }
+      p {
+        flex: 1;
+        overflow: hidden;
+        width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 18px;
       }
     }
   }
