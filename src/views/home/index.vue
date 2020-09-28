@@ -18,7 +18,7 @@
           <div class="info">
             <span>
               <i class="icon el-icon-alarm-clock" />
-              {{ item.updateAt | dateFormat }}
+              {{ item.createAt | dateFormat }}
             </span>
             <span>
               <i>|</i>
