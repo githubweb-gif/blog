@@ -101,7 +101,7 @@ export default {
       article: null,
       num: '',
       mulv: '',
-      // 上下文,
+      // 文章上下文,
       next: {},
       previous: {}
     }
