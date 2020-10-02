@@ -23,9 +23,9 @@
             <span>
               <i>|</i>
             </span>
-            <span>
+            <span v-if="item.label">
               <i class="icon el-icon-tickets" />
-              <span>{{ item.sorts.title }}</span>
+              <span>{{ item.label.title }}</span>
               <span>
                 <i class="icon el-icon-view" />
                 {{ item.meta.views }}

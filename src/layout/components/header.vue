@@ -220,7 +220,10 @@ export default {
     align-items: center;
     margin-right: 30px;
     img {
-      width: 60px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
     }
   }
   .navbar__items {
