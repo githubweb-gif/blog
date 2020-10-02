@@ -46,13 +46,14 @@ export default {
   },
   watch: {
     $route(to) {
-      bus.$emit('title', '')
       const height = this.$refs.list.offsetHeight
       if (to.path.split('/')[1] === 'article' && to.hash === '') {
         if (window.innerWidth <= 920) {
-          this.$refs.list.style['min-height'] = height + 'px'
           this.loading = true
+          this.$refs.list.style['min-height'] = height + 'px'
         }
+      } else if (to.path.split('/')[1] !== 'article') {
+        bus.$emit('title', '')
       }
     }
   },

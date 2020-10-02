@@ -46,6 +46,23 @@ export default {
   },
   watch: {
     title() {
+      this.$nextTick(() => {
+        if (this.title !== '' && this.title) {
+          var a = [...document.querySelectorAll('.contents a')]
+          a.forEach((item, index) => {
+            item.addEventListener('click', function() {
+              var data = item.getAttribute('data')
+              var id = document.querySelector(data)
+              var top = id.getBoundingClientRect().top + window.pageYOffset - 60
+              window.scrollTo({
+                top,
+                left: 0,
+                behavior: 'smooth'
+              })
+            })
+          })
+        }
+      })
       this.titlePosition()
     },
     hot() {
@@ -66,7 +83,9 @@ export default {
   },
   mounted() {
     bus.$on('title', (value) => {
-      this.cacheTitle = value
+      const title = value.replace(/href/g, 'data')
+      this.cacheTitle = title
+      console.log(title)
       this.onResize()
     })
   },

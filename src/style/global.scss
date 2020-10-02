@@ -2,11 +2,13 @@
     padding: 0;
     margin: 0; 
     box-sizing: border-box;
+    font-family: 微软雅黑,Times New Roman !important;
 }
 
 a {
     text-decoration: none;
     color: #000000;
+    cursor: pointer;
 }
 
 i,b {
@@ -52,6 +54,14 @@ pre {
     cursor: pointer;
 }
 
+// 文章格式优化
+#articleContent {
+    // 控制所有字符间距
+   letter-spacing: 0.04rem;
+   // 控制单词间距
+// word-spacing: 0.1rem;
+}
+
 // 目录
 #side {
     .contents {
@@ -66,7 +76,9 @@ pre {
         ul {
             font-size: 14px;
             li {
-               line-height: 24px;
+               line-height: 30px;
+               white-space: nowrap;
+               text-overflow: ellipsis;
             }
         }
     }
