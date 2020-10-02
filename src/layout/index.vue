@@ -32,6 +32,7 @@
 import HeaderVue from './components/header.vue'
 import FooterVue from './components/footer.vue'
 import SideVue from './components/sideBar.vue'
+import bus from '@/untils/eventBus'
 export default {
   components: {
     HeaderVue,
@@ -45,10 +46,13 @@ export default {
   },
   watch: {
     $route(to) {
+      bus.$emit('title', '')
       const height = this.$refs.list.offsetHeight
       if (to.path.split('/')[1] === 'article' && to.hash === '') {
-        this.$refs.list.style['min-height'] = height + 'px'
-        this.loading = true
+        if (window.innerWidth <= 920) {
+          this.$refs.list.style['min-height'] = height + 'px'
+          this.loading = true
+        }
       }
     }
   },
