@@ -4,7 +4,7 @@
       <div
         v-for="(item, index) in articleList"
         :key="item._id"
-        :class="[index % 2 === 0 ? 'left' : 'right', 'one']"
+        :class="[index % 2 === 0 ? 'right' : 'left', 'one']"
       >
         <div v-if="isCover" class="avatar">
           <img :src="item.cover | URL" alt>
@@ -133,7 +133,10 @@ export default {
     handleCurrentChange(page) {
       this.page.nowPage = page
       if (this.KeyWords !== '' && this.KeyWords) {
-        this.$router.push({ path: '/home', query: { page, KeyWords: this.KeyWords }})
+        this.$router.push({
+          path: '/home',
+          query: { page, KeyWords: this.KeyWords }
+        })
         return
       }
       this.$router.push({ path: '/home', query: { page }})
@@ -161,7 +164,6 @@ export default {
     overflow: hidden;
     max-height: 200px;
     border-radius: 4%;
-    box-shadow: -12px 16px 38px -12px rgba(0, 0, 0, 0.56);
     text-align: center;
     img {
       width: 100%;
@@ -219,18 +221,19 @@ export default {
   }
 }
 .left {
-  flex-direction: row-reverse;
   .avatar {
-    margin-left: 30px;
+    margin-right: 30px;
+    box-shadow: 12px 16px 25px -12px rgba(0, 0, 0, 0.56);
   }
 }
 .right {
+  flex-direction: row-reverse;
   .avatar {
-    margin-right: 30px;
+    margin-left: 30px;
+    box-shadow: -12px 16px 25px -12px rgba(0, 0, 0, 0.56);
   }
 }
-.fade-enter-active
- {
+.fade-enter-active {
   transition: all 1s;
 }
 .fade-enter {

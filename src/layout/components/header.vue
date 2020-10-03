@@ -218,7 +218,7 @@ export default {
   .logName {
     display: flex;
     align-items: center;
-    margin-right: 30px;
+    margin-right: 20px;
     img {
       width: 40px;
       height: 40px;
