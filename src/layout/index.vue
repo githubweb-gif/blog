@@ -47,9 +47,9 @@ export default {
   watch: {
     $route(to) {
       const height = this.$refs.list.offsetHeight
-      if (to.path.split('/')[1] === 'article' && to.hash === '') {
+      if (to.path.split('/')[1] === 'article') {
+        this.loading = true
         if (window.innerWidth <= 920) {
-          this.loading = true
           this.$refs.list.style['min-height'] = height + 'px'
         }
       } else if (to.path.split('/')[1] !== 'article') {

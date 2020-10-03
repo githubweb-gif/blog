@@ -19,11 +19,11 @@ export default {
     }
   },
   created() {
+    window.scroll(0, 0)
     this.initData()
   },
   methods: {
     initData() {
-      console.log('--------')
       getAll().then((res) => {
         this.dataList = res.data
       })

@@ -119,9 +119,7 @@ export default {
       this.getArticle()
     }
   },
-  beforeCreate() {},
   created() {
-    window.scroll(0, 0)
     this.getArticle()
   },
   mounted() {
@@ -130,15 +128,19 @@ export default {
   methods: {
     // 获取id文章
     getArticle() {
+      this.article = null
       if (this.id) {
-        getArticle(this.id).then((res) => {
-          this.article = res.data.article
-          this.num = res.data.article.meta.views
-          this.next = res.data.next[0]
-          this.previous = res.data.previous[0]
-          this.articleTitle()
-          this.$emit('loading', false)
-        })
+        setTimeout(() => {
+          getArticle(this.id).then((res) => {
+            this.article = res.data.article
+            this.num = res.data.article.meta.views
+            this.next = res.data.next[0]
+            this.previous = res.data.previous[0]
+            this.articleTitle()
+            window.scroll(0, 0)
+            this.$emit('loading', false)
+          })
+        }, 200)
       }
     },
     // 阅读数+1

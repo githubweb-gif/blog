@@ -27,12 +27,12 @@ const routes = [
       {
         path: 'archive',
         component: () => import('../views/archive/index.vue'),
-        meta: { KeepAlive: true }
+        meta: { KeepAlive: true, scroll: true }
       },
       {
         path: 'about',
         component: () => import('../views/about/index.vue'),
-        meta: { KeepAlive: true }
+        meta: { KeepAlive: true, scroll: true }
       }
     ]
   },
@@ -47,24 +47,12 @@ const router = new VueRouter({
   routes,
   scrollBehavior(to, from, savedPosition) {
     return new Promise((resolve, reject) => {
-      if (to.hash) {
-        const position = {}
-        position.selector = to.hash
-        const hash = document.querySelector(to.hash)
-        if (hash) {
-          const top = hash.getBoundingClientRect().top
-          position.y = top - 80
-          position.x = 0
-          resolve(position)
-        }
-        resolve()
-      }
       if (savedPosition) {
         resolve(savedPosition)
       } else {
-        setTimeout(() => {
+        if (to.meta.scroll) {
           resolve({ x: 0, y: 0 })
-        }, 300)
+        }
       }
     })
   }

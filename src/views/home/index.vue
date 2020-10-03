@@ -1,6 +1,6 @@
 <template>
   <div id="home">
-    <transition-group name="fade" mode="out-in">
+    <div ref="list" class="list">
       <div
         v-for="(item, index) in articleList"
         :key="item._id"
@@ -34,7 +34,7 @@
           </div>
         </div>
       </div>
-    </transition-group>
+    </div>
     <!-- 分页 -->
     <!-- pager-count只要5~21之间的奇数 -->
     <el-pagination
@@ -94,6 +94,7 @@ export default {
     },
     urlPage(value) {
       this.page.nowPage = this.urlPage
+      // 初始化数据，防止滚动时，数据残留
       this.initData()
     }
   },
@@ -127,6 +128,7 @@ export default {
         const { data } = res
         this.total = data.total
         this.articleList = data.records
+        window.scroll(0, 0)
       })
     },
     // currentPage 改变时会触发 当前页
@@ -232,11 +234,5 @@ export default {
     margin-left: 30px;
     box-shadow: -12px 16px 25px -12px rgba(0, 0, 0, 0.56);
   }
-}
-.fade-enter-active {
-  transition: all 1s;
-}
-.fade-enter {
-  opacity: 0;
 }
 </style>

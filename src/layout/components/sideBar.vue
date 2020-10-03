@@ -163,6 +163,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media screen and (min-width: 921px) {
+  #side {
+    z-index: 2100;
+  }
+}
 #side {
   position: relative;
 }
