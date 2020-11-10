@@ -145,6 +145,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media screen and (max-width: 1200px) {
+  .logName {
+    margin-left: 20px;
+  }
+}
 #header {
   width: 100%;
   height: 100%;

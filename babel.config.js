@@ -14,6 +14,13 @@ module.exports = {
       plugins: ['line-numbers'], // 使用了行号还可以添加其他插件，具体去官网看看吧
       theme: 'okaidia',
       css: true
-    }]
+    }],
+    [
+      'component',
+      {
+        'libraryName': 'element-ui',
+        'styleLibraryName': 'theme-chalk'
+      }
+    ]
   ]
 }

@@ -11,7 +11,13 @@ Vue.filter('dateFormat', function(originVal) {
 })
 
 Vue.filter('URL', function(value) {
-  const url = 'http://106.53.102.65:3000'
+  let url = ''
+  if (process.env.NODE_ENV === 'production') {
+    // 你上线的后端url
+    url = 'http://106.53.102.65:3000'
+  } else {
+    url = 'http://106.53.102.65:3000'
+  }
   if (value === '') {
     return ''
   }
